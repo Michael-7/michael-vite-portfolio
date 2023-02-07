@@ -1,101 +1,54 @@
 import './style.scss'
-// @ts-ignore
-// import * as bodymovin from 'bodymovin';
-// import typescriptLogo from './typescript.svg'
-// import { setupCounter } from './counter'
+import {loadAnimations, playMoonHover, playMoonToSun, playSunHover, playSunToMoon} from './animations'
 
-// document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-//   <div>
-//     <a href="https://vitejs.dev" target="_blank">
-//       <img src="/vite.svg" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://www.typescriptlang.org/" target="_blank">
-//       <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-//     </a>
-//     <h1>Vite + TypeScript</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite and TypeScript logos to learn more
-//     </p>
-//   </div>
-// `
+let themeIsDark = false;
 
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
-
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+	switchTheme(themeIsDark = !themeIsDark);
+}
 
 // Load functions
-loadAnimations();
-scrollListener();
+loadAnimations(themeIsDark);
+listeners();
 
-// setTimeout(() => switchTheme(true), 5000);
-setTimeout(switchTheme(true), 50000);
-
-function scrollListener() {
+function listeners() {
+	// Scroll down icon listener
 	let el = document.getElementById('scroll-down-arrow');
 	el.addEventListener('click', () => {
 		console.log(document.getElementById('scroll-target'));
 		document.getElementById('scroll-target').scrollIntoView({behavior: 'smooth'});
 	});
+
+	// Theme button listeners
+	let themeBtn = document.getElementById('theme-switcher');
+	themeBtn.addEventListener('click', () => {
+		themeIsDark = !themeIsDark
+		switchTheme(themeIsDark);
+	});
+
+	themeBtn.addEventListener('mouseenter', () => {
+		if (themeIsDark) {
+			playSunHover();
+		} else {
+			playMoonHover();
+		}
+	})
 };
 
-function loadAnimations() {
-
-	var charAnimationDesktop = bodymovin.loadAnimation({
-		container: document.getElementById('lottie-char'), // Required
-		path: '../char-jump-coffee.json', // Required
-		renderer: 'svg', // Required
-		loop: false, // Optional
-		autoplay: false, // Optional
-	});
-
-	var charAnimationMobile = bodymovin.loadAnimation({
-		container: document.getElementById('lottie-mob'), // Required
-		path: '../char-jump-coffee.json', // Required
-		renderer: 'svg', // Required
-		loop: false, // Optional
-		autoplay: true, // Optional
-	});
-
-	const loadingOverlay = document.getElementById('loading-overlay');
-	const fistLoadLine = document.getElementById('fist-load-line');
-
-	console.log(fistLoadLine);
-
-	let fll = false;
-
-	setTimeout(function(){
-		 fll = true;
-	}, 1500);
-
-	charAnimationDesktop.addEventListener('DOMLoaded', () => {
-		charAnimationDesktop.stop();
-		if(fll){
-			loadingOverlay.classList.add('animate');
-		} else {
-			setTimeout(function(){
-				loadingOverlay.classList.add('animate');
-			}, 1000);
-		}
-	});
-
-	loadingOverlay.addEventListener('animationend', () => {
-		charAnimationDesktop.play();
-		document.getElementById('loading-overlay').style.display = 'none';
-	});
-}
-
-function switchTheme(dark) {
+function switchTheme(isDark) {
 	var r = document.querySelector(':root');
 
-	if (dark) {
+	if (isDark) {
+		playMoonToSun();
 		r.style.setProperty('--background-color', '#1f1f1f');
 		r.style.setProperty('--text-color', '#f3f3f3');
 		r.style.setProperty('--accent-color', '#364CEA');
+		r.style.setProperty('--brightness', '1');
 	} else {
+		playSunToMoon();
 		r.style.setProperty('--background-color', '#FDFDFD');
 		r.style.setProperty('--text-color', '#2C3E50');
 		r.style.setProperty('--accent-color', '#364CEA');
+		r.style.setProperty('--brightness', '.12');
 	}
 }

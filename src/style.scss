@@ -11,16 +11,38 @@ $secondary-font: 'Inconsolata', monospace;
 	--background-color: #FDFDFD;
 	--text-color: #2C3E50;
 	--accent-color: #364CEA;
+	--brightness: .12;
 }
 
 html {
 	@media only screen and (max-width: 768px) {
 		font-size: 15.5px;
 	}
+
+	* {
+		transition: color .3s ease-in-out, background-color .3s ease-in-out;
+	}
 }
 
 .portfolio-body {
+	position: relative;
 	background-color: var(--background-color);
+
+	.theme-switcher {
+		position: fixed;
+		right: 0;
+		padding: 16px;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		cursor: pointer;
+		z-index: 1;
+
+		&__icon {
+			width: 35px;
+			filter: brightness(var(--brightness));
+		}
+	}
 
 	h3, p, li, a {
 		line-height: 1.5;
@@ -243,11 +265,12 @@ html {
 		top: 0;
 		left: 0;
 		background-color: var(--background-color);
-		z-index: 1;
+		z-index: 2;
 		display: grid;
 		grid-template-columns: 1fr;
 		justify-items: center;
 		align-items: center;
+		transition: none;
 
 		&.animate {
 			animation-name: loading-done;
