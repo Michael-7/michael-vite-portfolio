@@ -71,6 +71,7 @@ html {
 		font-weight: 700;
 		text-transform: uppercase;
 		text-align: right;
+		margin-top: 6px;
 
 		@media only screen and (max-width: 768px) {
 			text-align: left;
@@ -178,62 +179,6 @@ html {
 
 	.accent {
 		color: var(--accent-color);
-	}
-
-	// SPACING
-
-	.mt-big {
-		margin-top: 70px !important;
-	}
-
-	.mt-med {
-		margin-top: 50px !important;
-	}
-
-	.mt-sml {
-		margin-top: 20px !important;
-	}
-
-	.mt-xsml {
-		margin-top: 3px !important;
-	}
-
-	.mb-big {
-		margin-bottom: 70px !important;
-	}
-
-	.mt-links {
-		margin-top: 70px;
-	}
-
-	// LAYOUT
-
-	.show-mob {
-		display: none;
-	}
-
-	.show-tablet {
-		display: none;
-	}
-
-	@media only screen and (max-width: 500px) {
-		.show-mob {
-			display: block;
-		}
-
-		.hide-mob {
-			display: none;
-		}
-	}
-
-	@media only screen and (max-width: 768px) {
-		.show-tablet {
-			display: block;
-		}
-
-		.hide-tablet {
-			display: none;
-		}
 	}
 
 	.page-container {
@@ -385,42 +330,21 @@ html {
 			}
 
 			// Tablets
-			@media only screen and (max-width: 768px) {
-				transform: scaleX(-1);
-				bottom: 0;
-				left: 0;
+			@media only screen and (max-width: 1100px) {
+				right: -840px;
 			}
 
-			// Keep character close to text on big screens
-			@media only screen and (max-width: 1200px) {
-				right: -60%;
-			}
 
-			@media only screen and (min-width: 1200px) {
-				right: -60%;
-			}
-
-			@media only screen and (min-width: 1350px) {
-				right: -50%;
-			}
-
-			@media only screen and (min-width: 1500px) {
-				right: -40%;
-			}
-
-			@media only screen and (min-width: 1800px) {
-				right: -30%;
-			}
-
-			@media only screen and (min-width: 2100px) {
-				right: -20%;
+			// Tablets
+			@media only screen and (max-width: 750px) {
+				display: none;
 			}
 		}
 
 		#lottie-mob {
 			position: relative;
-			width: 275vw;
-			margin: -35vw 0 0 -38vw;
+			width: 1200px;
+			margin: -35vw 0 0 -200px;
 			transform: scaleX(-1);
 		}
 
@@ -517,7 +441,7 @@ html {
 				position: relative;
 
 				@media only screen and (max-width: 1080px) {
-					margin: 0 40px 0 40px;
+					margin: 0 60px 0 40px;
 				}
 
 				@media only screen and (max-width: 768px) {
@@ -529,9 +453,10 @@ html {
 					display: flex;
 					flex-direction: column;
 					margin-top: 4px;
+					gap: 6px;
 
 					@media only screen and (max-width: 768px) {
-						margin-left: 60px;
+						margin-left: 24px;
 					}
 
 					.item {
@@ -542,13 +467,13 @@ html {
 						.item-right {
 							max-width: 65%;
 
-							@media only screen and (max-width: 500px) {
+							@media only screen and (max-width: 768px) {
 								max-width: 100%;
 							}
 						}
 
 						.item-left {
-							@media only screen and (max-width: 500px) {
+							@media only screen and (max-width: 768px) {
 								display: none;
 							}
 						}
@@ -566,7 +491,7 @@ html {
 					grid-column-gap: 10px;
 
 					@media only screen and (max-width: 768px) {
-						margin-left: 60px;
+						margin-left: 24px;
 					}
 
 					.tools-col {
@@ -616,7 +541,67 @@ html {
 						width: 100%
 					}
 				}
+
+				.contact-desciption {
+					font-weight: 500;
+				}
 			}
 		}
+	}
+}
+
+// SPACING
+
+.mt-big {
+	margin-top: 70px !important;
+}
+
+.mt-med {
+	margin-top: 50px !important;
+}
+
+.mt-sml {
+	margin-top: 20px !important;
+}
+
+.mt-xsml {
+	margin-top: 3px !important;
+}
+
+.mb-big {
+	margin-bottom: 70px !important;
+}
+
+.mt-links {
+	margin-top: 70px;
+}
+
+// LAYOUT
+
+.show-mob {
+	display: none;
+}
+
+.show-tablet {
+	display: none;
+}
+
+@media only screen and (max-width: 500px) {
+	.show-mob {
+		display: block;
+	}
+
+	.hide-mob {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.show-tablet {
+		display: block;
+	}
+
+	.hide-tablet {
+		display: none;
 	}
 }

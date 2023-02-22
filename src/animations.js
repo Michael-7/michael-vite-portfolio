@@ -1,7 +1,16 @@
+let charAnimationMobile;
 let charAnimationDesktop;
 let themeAnimation;
 
 export function loadAnimations(themeIsDark) {
+	charAnimationMobile = lottie.loadAnimation({
+		container: document.getElementById('lottie-mob'), // Required
+		path: '../char-jump-coffee.json', // Required
+		renderer: 'svg', // Required
+		loop: false, // Optional
+		autoplay: false, // Optional
+	});
+
 	charAnimationDesktop = lottie.loadAnimation({
 		container: document.getElementById('lottie-char'), // Required
 		path: '../char-jump-coffee.json', // Required
@@ -39,6 +48,7 @@ export function loadAnimations(themeIsDark) {
 
 	loadingOverlay.addEventListener('animationend', () => {
 		charAnimationDesktop.play();
+		charAnimationMobile.play();
 		document.getElementById('loading-overlay').style.display = 'none';
 	});
 
